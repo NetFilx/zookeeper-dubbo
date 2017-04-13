@@ -13,6 +13,7 @@ public class DemoProvider {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath*:META-INF/spring/*.xml");
 		context.start();
 		System.out.println("服务已经启动！");
+		//模拟服务一直在提供
 		System.in.read();
 	}
 

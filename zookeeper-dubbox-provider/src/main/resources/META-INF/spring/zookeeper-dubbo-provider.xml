@@ -15,6 +15,10 @@
     <dubbo:protocol name="dubbo" serialization="kryo" optimizer="cn.limbo.demo.api.SerializationOptimizerImpl"/>
 
     <!-- use tomcat server -->
+    <!--
+        设置contextpath属性之后，具体的url前面就要加上这个contextpath
+        比如未设置之前是/user/1.json,设置之后就是/services/user/1.json
+    -->
     <dubbo:protocol name="rest" port="8888" threads="500" contextpath="services" server="tomcat" accepts="500"
                     extension="com.alibaba.dubbo.rpc.protocol.rest.support.LoggingFilter"/>
     <!-- 声明需要暴露的服务接口 -->
