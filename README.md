@@ -22,7 +22,7 @@ dubbo很早就停止服务了，现在维持dubbox服务的是当当在做，里
 
 2. 在这个项目下创建三个module，这三个module都是maven项目，说白了，就是一个大项目下面包含三个项目。这三个项目名字和功能分别是：zookeeper-dubbox-api（提供接口服务），zookeeper-dubbox-provider（提供接口实现，提供者），zookeeper-dubbox-consumer（服务消费者），真实的情况下，针对一个api会有多个provider实现，这样如果一个服务挂了，还可以有其他的可以顶上去。不会导致整个项目崩了。
 
-3. 先实现api。具体代码参照工程，我说一下思路。样例里面实现的是一个获取用户信息的服务，所以需要一个用户实体类，以及提供服务的借口。因为涉及到网络的传输，所以我们需要使用一个序列化，也就是可以看到的SerializationOptimizerImpl，这个类，关于序列化可以看看[这个](https://dangdangdotcom.github.io/dubbox/serialization.html)，这样api这个就写好了。
+3. 先实现api。具体代码参照工程，我说一下思路。样例里面实现的是一个获取用户信息的服务，所以需要一个用户实体类，以及提供服务的借口。因为涉及到网络的传输，所以我们需要使用一个序列化，也就是可以看到的SerializationOptimizerImpl，这个类，关于序列化可以看看[这个](https://dangdangdotcom.github.io/dubbox/serialization.html)，这样api这个就写好了。实际环境中，一半是把这个接口服务打包，然后由provider和consumer各自依赖一份。
 
 4. 实现provider。这个是服务提供者，是整个项目中最为重要的几个地方。主要实现的也是api中提供的接口。有几个地方需要注意的是，api和provider之间的连通是通过pom.xml中的依赖实现的，如下：
 
